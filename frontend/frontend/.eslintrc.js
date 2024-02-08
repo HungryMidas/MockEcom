@@ -1,4 +1,6 @@
-{
+const path = require('path');
+
+module.exports = {
 	"extends": [
 		"next/core-web-vitals",
 		"plugin:@next/next/recommended",
@@ -9,6 +11,16 @@
 			"version": "detect"
 		}
 	},
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "parserOptions": {
+        "project": path.join(__dirname, "./tsconfig.json")
+    },
+    "settings": {
+        "next": {
+            "rootDir": path.join(__dirname, "./")
+        }
+    },
 	"rules": {
 		"@typescript-eslint/no-inferrable-types": "error",
 		"@typescript-eslint/explicit-function-return-type": "error",

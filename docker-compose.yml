@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend/frontend/
+      dockerfile: frontend.dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/frontend:/app
+      - /app/node_modules
+      - /app/.next
+    env_file:
+      - ./frontend/frontend/.env
+    restart: always
+    depends_on:
+      - bff
+
+  bff:
+    container_name: bff
+    build:
+      context: ./microservices/bff-service/
+      dockerfile: bff.dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./microservices/bff:/app
+      - /app/node_modules
+    env_file:
+      - ./microservices/bff-service/.env
+    restart: always
+    depends_on:
+      - product
+
+  product:
+    container_name: product
+    build:
+      context: ./microservices/product-service/
+      dockerfile: product.dockerfile
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./microservices/product:/app
+      - /app/node_modules
+    env_file:
+      - ./microservices/product-service/.env
+    restart: always

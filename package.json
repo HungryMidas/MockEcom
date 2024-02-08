@@ -10,7 +10,10 @@
 		"eslint:frontend": "eslint --ext .js,.jsx,.ts,.tsx frontend/frontend/src/",
 		"eslint:microservice": "eslint --ext .js,.jsx,.ts,.tsx microservices/**/src/**",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-		"lint-staged": "lint-staged"
+		"lint-staged": "lint-staged",
+        "dev:watch": "npx concurrently \"npm run lint:watch\" \"next dev\"",
+        "lint:watch": "esw --watch src --ext .js,.jsx,.ts,.tsx",
+        "dev:frontend": "npm run dev:watch --workspace=frontend/frontend"
 	},
 	"lint-staged": {
 		"microservices/**/*.ts": [
@@ -22,6 +25,10 @@
             "prettier --write"
 		]
 	},
+    "workspaces": [
+        "microservices/*",
+        "frontend/*"
+    ],
 	"keywords": [],
 	"author": "",
 	"license": "ISC",

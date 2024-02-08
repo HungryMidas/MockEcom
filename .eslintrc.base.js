@@ -1,4 +1,4 @@
-{
+module.exports = {
 	"root": true,
 	"env": {
 		"browser": true,
@@ -14,7 +14,5 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["react"],
-	"rules": {},
 	"ignorePatterns": ["dist", "node_modules", "**/test/*", ".eslintrc.js"]
 }
