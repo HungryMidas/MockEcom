@@ -1,0 +1,33 @@
+# Ignore all file extensions except js and jsx files.
+*.*
+!*.js
+!*.jsx
+!*.json
+!*.ts
+!*.tsx
+!*.d.ts
+
+
+# Correct our .json and config files
+!/package.json
+/package-lock.json
+!/webpack.config.js
+!/babel.config.json
+!/tsconfig.json
+!/.eslintrc.js
+
+!/microservices
+!/microservices/**/package.json
+/microservices/**/package-lock.json
+!/microservices/**/webpack.config.js
+!/microservices/**/babel.config.json
+!/microservices/**/tsconfig.json
+!/microservices/**/.eslintrc.js
+
+!/frontend/frontend/
+!/frontend/frontend/package.json
+/frontend/frontend/package-lock.json
+!/frontend/frontend/webpack.config.js
+!/frontend/frontend/babel.config.json
+!/frontend/frontend/tsconfig.json
+!/frontend/frontend/.eslintrc.js
