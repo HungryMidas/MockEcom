@@ -3,7 +3,7 @@ ARG PATH_PREFIX
 ARG ENVIRONMENT
 ENV ENVIRONMENT=${ENVIRONMENT}
 WORKDIR /usr/src/app
-COPY ./tsconfig.base.json /usr/src/app/tsconfig.base.json
+COPY ./tsconfig.base.json /usr/tsconfig.base.json
 COPY .${PATH_PREFIX}package*.json ./
 RUN npm install
 COPY .${PATH_PREFIX} ./
