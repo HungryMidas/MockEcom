@@ -4,8 +4,13 @@ services:
   frontend:
     container_name: frontend
     build:
-      context: ./frontend/frontend/
-      dockerfile: frontend.dockerfile
+      context: .
+      dockerfile: .${FRONTEND_PATH_PREFIX}frontend.dockerfile
+      args:
+        - ENVIRONMENT=${ENVIRONMENT}
+        - PATH_PREFIX=${FRONTEND_PATH_PREFIX}
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
     ports:
       - "3000:3000"
     volumes:
@@ -21,8 +26,13 @@ services:
   bff:
     container_name: bff
     build:
-      context: ./microservices/bff-service/
-      dockerfile: bff.dockerfile
+      context: .
+      dockerfile: .${BFF_PATH_PREFIX}/bff.dockerfile
+      args:
+        - ENVIRONMENT=${ENVIRONMENT}
+        - PATH_PREFIX=${BFF_PATH_PREFIX}
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
     ports:
       - "3001:3001"
     volumes:
@@ -37,8 +47,13 @@ services:
   product:
     container_name: product
     build:
-      context: ./microservices/product-service/
-      dockerfile: product.dockerfile
+      context: .
+      dockerfile: .${PRODUCT_PATH_PREFIX}product.dockerfile
+      args:
+        - ENVIRONMENT=${ENVIRONMENT}
+        - PATH_PREFIX=${PRODUCT_PATH_PREFIX}
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
     ports:
       - "3002:3002"
     volumes:

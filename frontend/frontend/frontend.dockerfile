@@ -1,12 +1,14 @@
 FROM node:18-alpine as base
 RUN apk add --no-cache g++ make py3-pip libc6-compat
 WORKDIR /app
-COPY package*.json ./
+ARG PATH_PREFIX
+COPY .${PATH_PREFIX}package*.json ./
+COPY ./tsconfig.base.json /usr/tsconfig.base.json
 EXPOSE 3000
 
 FROM base as builder
 WORKDIR /app
-COPY . .
+COPY .${PATH_PREFIX} ./
 RUN npm run build
 
 
@@ -29,6 +31,5 @@ CMD npm start
 
 FROM base as dev
 RUN npm install 
-COPY . .
+COPY .${PATH_PREFIX} .
 CMD npm run dev:watch
-# CMD ["npm" "run dev:watch"]
